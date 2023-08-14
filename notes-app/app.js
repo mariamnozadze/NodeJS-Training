@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-fs.writeFileSync("notes.txt", "my name is jeff");
+fs.writeFileSync("notes.txt", "my name is john cenaaa");
 
 // $ node app.js
 
