@@ -1,13 +1,8 @@
-//task-03 -- coloring a console
-const chalk = require('chalk')
+const chalk = require('chalk');
+const getNotes = require("./notes.js");
 
-// const text = chalk.bold.green;
-// const text = chalk.bold.red;
-// const text =  chalk.hex('#FFA500');
-// const text = chalk.underline.green;
-// const text = chalk.bgWhite.red;
-const text = chalk.green.inverse.bold("Congrats!")
-console.log(text);
+const msg = getNotes();
+console.log(msg);
 
-// console.log(text("Success"));
-console.log(chalk.red.bgWhite("oplaaaa"))
+const greet = chalk.green.inverse.bold('success');
+console.log(greet)
