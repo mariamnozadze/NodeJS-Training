@@ -1,12 +1,9 @@
 const chalk = require("chalk");
-const { describe } = require("yargs");
 const yargs = require("yargs");
-const getNotes = require("./notes.js");
+const notes = require("./notes.js");
 
 //customize yargs version
 yargs.version("1.1.0");
-
-//add, remove, read, list
 
 //create add command
 yargs.command({
@@ -25,13 +22,9 @@ yargs.command({
     }
   },
   handler: function (argv) {
-    console.log("Title: ", argv.title);
-    console.log("Body: ", argv.body);
+    notes.addNote(argv.title, argv.body)
   },
 });
-//node app.js  add --title="Buy" --body="These are what i need to buy"
-//Title:  Buy
-//Body:  These are what i need to buy
 
 
 //Create remove command
