@@ -10,14 +10,26 @@ const addNote = function (title, body) {
   // Load existing notes
   const notes = loadNotes();
 
-  // Push the new note to the notes array
-  notes.push({
-    title: title,
-    body: body,
+  //Check for duplicate notes
+  //--function runs one time for each note (so if there's 20 note, it'll run 20 times)
+  const duplicateNotes = notes.filter(function (note) {
+    return note.title === title;
   });
 
-  // Save the updated notes
-  saveNotes(notes);
+  //If no duplicates found, add the new note
+  if (duplicateNotes.length === 0) {
+    // Push the new note to the notes array
+    notes.push({
+      title: title,
+      body: body,
+    });
+
+    // Save the updated notes
+    saveNotes(notes);
+    console.log("new note added");
+  } else {
+    console.log("note title taken!");
+  }
 };
 
 // save notes to a file
