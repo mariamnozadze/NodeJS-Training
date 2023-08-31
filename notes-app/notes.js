@@ -33,12 +33,17 @@ const addNote = function (title, body) {
   }
 };
 
+
+
 const removeNote = function (title) {
   const notes = loadNotes();
+
+  // Create a new array with notes that don't match the given title (to keep)
   const notesToKeep = notes.filter(function (note) {
     return note.title !== title;
   });
 
+  // Check if a note was removed and update the notes
   if (notes.length > notesToKeep.length) {
     console.log(chalk.green.inverse("Note removed!"));
     saveNotes(notesToKeep);
@@ -46,8 +51,11 @@ const removeNote = function (title) {
     console.log(chalk.red.inverse("No note found!"));
   }
 
+  // Save the updated notes (even if no note was removed)
   saveNotes(notesToKeep);
 };
+
+
 
 // save notes to a file
 const saveNotes = function (notes) {
