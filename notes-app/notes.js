@@ -32,6 +32,14 @@ const addNote = function (title, body) {
   }
 };
 
+const removeNote = function (title) {
+  const notes = loadNotes();
+  const notesToKeep = notes.filter(function (note) {
+    return note.title !== title;
+  });
+  saveNotes(notesToKeep);
+};
+
 // save notes to a file
 const saveNotes = function (notes) {
   // Convert notes array to JSON format
@@ -61,4 +69,5 @@ const loadNotes = function () {
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
+  removeNote: removeNote,
 };
