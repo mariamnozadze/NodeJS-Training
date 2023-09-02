@@ -2,20 +2,25 @@ const fs = require("fs");
 const chalk = require("chalk");
 
 //  retrieve notes
-const getNotes = function () {
+const getNotes = () => {
   return "Your notes";
 };
 
 // add a new note
-const addNote = function (title, body) {
+const addNote = (title, body) => {
   // Load existing notes
   const notes = loadNotes();
 
   //Check for duplicate notes
   //--function runs one time for each note (so if there's 20 note, it'll run 20 times)
-  const duplicateNotes = notes.filter(function (note) {
-    return note.title === title;
-  });
+
+  //arrow func
+  const duplicateNotes = notes.filter((note) => note.title === title);
+
+  //no arrow func
+  // const duplicateNotes = notes.filter(function (note) {
+  //   return note.title === title;
+  // });
 
   //If no duplicates found, add the new note
   if (duplicateNotes.length === 0) {
@@ -27,21 +32,23 @@ const addNote = function (title, body) {
 
     // Save the updated notes
     saveNotes(notes);
-    console.log("new note added");
+    console.log(chalk.green.inverse("new note added"));
   } else {
-    console.log("note title taken!");
+    console.log(chalk.red.inverse("note title taken!"));
   }
 };
 
-
-
-const removeNote = function (title) {
+const removeNote = (title) => {
   const notes = loadNotes();
 
   // Create a new array with notes that don't match the given title (to keep)
-  const notesToKeep = notes.filter(function (note) {
-    return note.title !== title;
-  });
+  //arrow func
+  const notesToKeep = notes.filter((note) => note.title !== title);
+
+  //no arrow func
+  // const notesToKeep = notes.filter(function (note) {
+  //   return note.title !== title;
+  // });
 
   // Check if a note was removed and update the notes
   if (notes.length > notesToKeep.length) {
@@ -55,10 +62,8 @@ const removeNote = function (title) {
   saveNotes(notesToKeep);
 };
 
-
-
 // save notes to a file
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
   // Convert notes array to JSON format
   const dataJSON = JSON.stringify(notes);
 
@@ -67,7 +72,7 @@ const saveNotes = function (notes) {
 };
 
 //  load notes from a file
-const loadNotes = function () {
+const loadNotes = () => {
   try {
     // Read data from 'notes.json' file
     const dataBuffer = fs.readFileSync("notes.json");
