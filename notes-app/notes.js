@@ -62,6 +62,16 @@ const removeNote = (title) => {
   saveNotes(notesToKeep);
 };
 
+const listNotes = () => {
+  const notes = loadNotes();
+
+  console.log(chalk.inverse("Your notes"));
+
+  notes.forEach((note) => {
+    console.log(note.title)
+  });
+}
+
 // save notes to a file
 const saveNotes = (notes) => {
   // Convert notes array to JSON format
@@ -92,4 +102,5 @@ module.exports = {
   getNotes: getNotes,
   addNote: addNote,
   removeNote: removeNote,
+  listNotes: listNotes
 };
